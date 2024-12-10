@@ -6,14 +6,11 @@ from game import location
 import game.config as config
 import game.display as display
 from game.events import *
-from game.items import Item
-import random
-#import numpy
-from game import event
-from game.combat import Monster
+import game.items as items
 import game.combat as combat
-from game.display import menu
-import game.ship as ship
+import game.event as event
+import game.items as item
+import random
 
 #################################################################################################
 #ISLAND DEFINITION
@@ -77,7 +74,7 @@ class Cove(location.SubLocation):
 
         self.item_on_the_shore = FishingSupplies()
         self.events.append(fishArtemis.FishingTrip())
-        
+
     def enter(self):
         display.announce("As you walk around the shore of the island you come across a small cove.\n"+
                          "You see some fishing supplies and you see that the cove has a large population of fish.")
@@ -203,14 +200,14 @@ class PirateHideout(location.SubLocation):
 
 class Forest(location.SubLocation):
     def __init__(self, m):
-        super.__init__(m)
+        super().__init__(m)
         self.name = "dense forest"
         self.verbs["north"] = self
-        self.verns["south"] = self
+        self.verbs["south"] = self
         self.verbs["east"] = self
         self.verbs["west"] = self
         self.event_chance = 100
-        self.events.append(MutatedApeCombat)
+        self.events.append(MutatedApeCombat())
     
     def enter(self):
         display.announce("With diffuculties you start to walk through the small forest the cover the center of this island.\n" +
@@ -231,13 +228,13 @@ class Forest(location.SubLocation):
 #ITEMS
 #################################################################################################
 
-class GoldenIdol(Item):
+class GoldenIdol(item.Item):
     def __init__(self):
-        super.__init__("golden idol", 700)
+        super().__init__("golden idol", 700)
 
-class FishingSupplies(Item):
+class FishingSupplies(item.Item):
     def __init__(self):
-        super.__init__("fishing supplies", 20)
+        super().__init__("fishing supplies", 20)
 
 #################################################################################################
 #FIGHTS

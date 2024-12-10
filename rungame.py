@@ -6,7 +6,7 @@
 #         - crew, crew's health
 
 import game.ship as ship
-#import game.world as world
+import game.world as world
 import game.player as player
 import game.config as config
 import game.display as display
